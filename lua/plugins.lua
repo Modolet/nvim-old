@@ -14,14 +14,18 @@ packer.startup({
     use("shaunsingh/nord.nvim") -- 很现代化 但是比较素
     use("navarasu/onedark.nvim") -- oneDark 可以说很经典了..
     use("EdenEast/nightfox.nvim") -- 一个插件包含多种配色 Nightfox / Nordfox / Dayfox / Dawnfox / Duskfox，支持非常多的第三方插件。
+    use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }) -- 状态栏
+    use("arkav/lualine-lsp-progress") -- 状态栏扩展
+    use { 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } } -- 搜索
     
     -- 文件树
     use{
       'nvim-tree/nvim-tree.lua',
       requires = {'nvim-tree/nvim-web-devicons'}, -- optional, for file icons
       tag = 'nightly'
-
     }
+    -- tabline 顶部条
+    use {'akinsho/bufferline.nvim', requires = {'nvim-tree/nvim-web-devicons', 'moll/vim-bbye'}}
 
   end,
 
