@@ -242,6 +242,11 @@ _G.packer_plugins = {
     path = "/home/modolet/.local/share/nvim/site/pack/packer/opt/nvim-code-action-menu",
     url = "git@github.com:weilbith/nvim-code-action-menu"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/modolet/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "git@github.com:mfussenegger/nvim-dap"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/modolet/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
