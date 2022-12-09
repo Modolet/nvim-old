@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- 测试
+vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>lua require('tools').func()<CR>", { noremap = true, silent = true })
+
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
@@ -195,8 +198,33 @@ pluginKeys.cmp = function(cmp)
 	}
 end
 
--- aerial 用于显示函数列表
-pluginKeys.aerial = function(bufnr)
-	return
-end
+-- 调试
+-- 打断点/删除断点
+-- map("n", "<F9>", "<cmd>lua require('dap').toggle_breakpoint();<CR>", opt)
+map("n", "<F9>", "<cmd>DapToggleBreakpoint<CR>", opt)
+-- 清空断点
+-- map("n", "<S-F9>", "<cmd>lua require('dap').repl.clear();<CR>", opt)
+map("n", "<S-F9>", "<cmd>DapClearBreakpoints<CR>", opt)
+-- 运行代码到断点处
+-- map("n", "<F5>", "<cmd>lua require('dap').continue();<CR>", opt)
+map("n", "<F5>", "<cmd>DapContinue<CR>", opt)
+-- 结束运行
+-- map("n", "<S-F5>", "<cmd>lua require('dap').stop();<CR>", opt)
+map("n", "<S-F5>", "<cmd>DapStop<CR>", opt)
+-- 步过
+-- map("n", "<F10>", "<cmd>lua require('dap').step_over();<CR>", opt)
+map("n", "<F10>", "<cmd>DapStepOver<CR>", opt)
+-- 步入
+-- map("n", "<F11>", "<cmd>lua require('dap').step_into();<CR>", opt)
+map("n", "<F11>", "<cmd>DapStepInto<CR>", opt)
+-- 运行代码到光标处
+-- map("n", "<F12>", "<cmd>lua require('dap').run_to_cursor();<CR>", opt)
+map("n", "<F12>", "<cmd>DapRunToCursor<CR>", opt)
+-- 步出
+-- map("n", "<S-F11>", "<cmd>lua require('dap').step_out();<CR>", opt)
+map("n", "<S-F11>", "<cmd>DapStepOut<CR>", opt)
+-- 结束调试
+--map("n", "<F8>", "<cmd>lua require('dap').terminal();<CR>", opt)
+map("n", "<F8>", "<cmd>DapTerminal<CR>", opt)
+
 return pluginKeys
