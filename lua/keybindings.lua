@@ -2,38 +2,27 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local map = vim.api.nvim_set_keymap
-local opt = {noremap = true, silent = true}
+local opt = { noremap = true, silent = true }
+
+-- 给行尾添加分号并新开一行
+map("i", "<M-o>", "<Esc>:lua require('tools').append_semicolon()<CR>o", opt)
+map("i", "<M-O>", "<Esc>:lua require('tools').append_semicolon()<CR>O", opt)
+map("n", "<M-o>", ":lua require('tools').append_semicolon()<CR>o", opt)
+map("n", "<M-O>", ":lua require('tools').append_semicolon()<CR>O", opt)
 
 -- 取消原本S键的功能
-map("n","s","",opt)
+map("n", "s", "", opt)
+map("n", "so", "", opt)
 
--- 分屏快捷键
-map("n","sv",":vsp<CR>",opt) -- 横向分屏
-map("n","sh",":sp<CR>",opt) -- 纵向分屏
-map("n","sc","<C-w>c",opt) -- 关闭当前
-map("n","so","<C-w>o",opt) -- 关闭其他
--- 跳转
-map("n","eh","<C-w>h",opt)
-map("n","ej","<C-w>j",opt)
-map("n","ek","<C-w>k",opt)
-map("n","el","<C-w>l",opt)
 -- 左右比例控制
-map("n", "<C-Left>",":vertical resize -2<CR>",opt)
-map("n", "<C-Right>",":vertical resize +2<CR>",opt)
+map("n", "<C-Left>", ":vertical resize -2<CR>", opt)
+map("n", "<C-Right>", ":vertical resize +2<CR>", opt)
 -- 上下比例控制
-map("n", "<C-Up>",":resize +2<CR>",opt)
-map("n", "<C-Down>",":resize -2<CR>",opt)
--- 等比例
-map("n","s=","<C-w>=",opt)
+map("n", "<C-Up>", ":resize +2<CR>", opt)
+map("n", "<C-Down>", ":resize -2<CR>", opt)
 
 -- Terminal相关
-map("n","<Leader>th",":sp | terminal<CR>",opt)
-map("n","<Leader>tv",":vsp | terminal<CR>",opt)
-map("t","<Esc>","<C-\\><C-n>",opt)
-map("n","eh",[[ <C-\><C-N><C-w>h ]],opt)
-map("n","ej",[[ <C-\><C-N><C-w>j ]],opt)
-map("n","ek",[[ <C-\><C-N><C-w>k ]],opt)
-map("n","el",[[ <C-\><C-N><C-w>l ]],opt)
+map("t", "<Esc>", "<C-\\><C-n>", opt)
 
 -- 代码移动
 -- 上下滚动浏览
@@ -43,57 +32,171 @@ map("n", "<C-k>", "4k", opt)
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
 
--- visual模式配置
--- 缩进代码
-map("v",">",">gv",opt)
-map("v","<","<gv",opt)
--- 上下移动选中文本
-map("v", "J", ":move '>+1<CR>gv-gv", opt)
-map("v", "K", ":move '<-2<CR>gv-gv", opt)
-
 -- 保存、退出
-map("n","<C-q>",":q<CR>",opt)
-map("n","<C-a><C-q>",":qa<CR>",opt)
-map("n","<C-s>",":w<CR>",opt)
-map("n","<C-a><C-s>",":wa<CR>",opt)
+map("n", "<C-q>", ":q<CR>", opt)
+map("n", "<C-s>", ":w<CR>", opt)
+
+-- 全选
+map("n", "<C-a>", "ggVG", opt)
 
 -- 插件快捷键
 local pluginKeys = {}
 
--- nvim-tree
-map("n","<Leader>f",":NvimTreeToggle<CR>",opt)
 pluginKeys.nvimTree = {
--- 打开文件或文件夹
-  { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
-  -- 分屏打开文件
-  { key = "v", action = "vsplit" },
-  { key = "h", action = "split" },
-  -- 显示隐藏文件
-  { key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
-  { key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
-  -- 文件操作
-  { key = {"<F5>","r"}, action = "refresh" },
-  { key = "a", action = "create" },
-  { key = "d", action = "remove" },
-  { key = "r", action = "rename" },
-  { key = "x", action = "cut" },
-  { key = "c", action = "copy" },
-  { key = "p", action = "paste" },
-  { key = "s", action = "system_open" },
+	-- 打开文件或文件夹
+	{ key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+	-- 分屏打开文件
+	{ key = "v", action = "vsplit" },
+	{ key = "h", action = "split" },
+	-- 显示隐藏文件
+	{ key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
+	{ key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
+	-- 文件操作
+	{ key = { "<F5>", "r" }, action = "refresh" },
+	{ key = "a", action = "create" },
+	{ key = "d", action = "remove" },
+	{ key = "r", action = "rename" },
+	{ key = "x", action = "cut" },
+	{ key = "c", action = "copy" },
+	{ key = "p", action = "paste" },
+	{ key = "s", action = "system_open" },
 }
 
--- bufferline
--- 新建
-map("n","Tn",":tabnew<CR>",opt)
--- 左右TAB切换
-map("n","Tl",":BufferLineCycleNext<CR>",opt)
-map("n","Th",":BufferLineCyclePrev<CR>",opt)
--- 关闭
-map("n","Tcc",":BDelete<CR>",opt) -- 关闭一个
-map("n","Tcl",":BufferLineCoseLeft<CR>",opt) -- 关闭左边
-map("n","Tcr",":BufferLineCoseRight<CR>",opt) -- 关闭右边
-map("n","Tca",":BufferLinePickClose<CR>",opt) -- 关闭所有
+-- telescope
+map("n", "<C-p>", ":Telescope find_files<CR>", opt) -- 查找文件
+map("n", "<C-f>", ":Telescope live_grep<CR>", opt) -- 全局搜索
+pluginKeys.telescope = {
+	i = {
+		-- 上下移动
+		["<C-j>"] = "move_selection_next",
+		["<C-k>"] = "move_selection_previous",
+		["<Down>"] = "move_selection_next",
+		["<Up>"] = "move_selection_previous",
+		-- 历史记录
+		["<C-n>"] = "cycle_history_next",
+		["<C-p>"] = "cycle_history_prev",
+		-- 关闭窗口
+		["<C-q>"] = "close",
+		-- 预览窗口上下滚动
+		["<C-u>"] = "preview_scrolling_up",
+		["<C-d>"] = "preview_scrolling_down",
+	},
+}
 
+-- treesitter
+pluginKeys.treesitter = {
+	init_selection = "<CR>",
+	node_incremental = "<CR>",
+	node_decremental = "<BS>",
+	scope_incremental = "<TAB>",
+}
 
+-- mapLSP
+-- 配置到whichkey内
+pluginKeys.mapLSP = function(mapbuf)
+	-- rename
+	--[[
+  Lspsaga 替换 rn
+  mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+  --]]
+	-- mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
+	-- code action
+	--[[
+  Lspsaga 替换 ca
+  mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
+  --]]
+	-- mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
+	-- go xx
+	--[[
+    mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
+  --]]
+	-- mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+	--[[
+  Lspsaga 替换 gh
+  mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+  --]]
+	-- mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
+	--[[
+  Lspsaga 替换 gr
+  mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+  --]]
+	-- mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
+	--[[
+  Lspsaga 替换 gp, gj, gk
+  mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
+  mapbuf("n", "gj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
+  mapbuf("n", "gk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
+  --]]
+	-- diagnostic
+	-- mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+	-- mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+	-- mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+	-- mapbuf("n", "<leader>fc", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
+	-- 未用
+	-- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
+	-- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+	-- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+	-- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
+	-- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+	-- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+	-- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
+	-- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+end
 
+-- CMP
+pluginKeys.cmp = function(cmp)
+	local has_words_before = function()
+		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	end
+
+	local luasnip = require("luasnip")
+	return {
+		-- 出现补全
+		["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		-- 取消
+		["<A-,>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+		-- 上一个
+		-- ["<C-k>"] = cmp.mapping.select_prev_item(),
+		-- 下一个
+		-- ["<C-j>"] = cmp.mapping.select_next_item(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		-- 确认
+		["<CR>"] = cmp.mapping.confirm({
+			select = false,
+			behavior = cmp.ConfirmBehavior.Replace,
+		}),
+		--  如果窗口内容太多，可以滚动
+		["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+	}
+end
+
+-- aerial 用于显示函数列表
+pluginKeys.aerial = function(bufnr)
+	return
+end
 return pluginKeys
