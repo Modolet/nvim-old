@@ -29,5 +29,6 @@ end
 require("lsp.setup")
 require("lsp.cmp")
 require("lsp.ui")
+require("dap.setup")
 
 vim.notify([[欢迎使用Modolet的NVIM，祝您愉快~😀]])
