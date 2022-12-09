@@ -64,6 +64,7 @@ local register = {
 		f = { "<cmd>lua require('FTerm').toggle()<CR>", "浮动终端" },
 		v = { ":vsp | terminal<CR>", "横向分屏终端" },
 		i = { ":sp | terminal<CR>", "纵向分屏终端" },
+		g = { "<CMD>lua require('FTerm').run('lazygit && exit')<CR>", "lazygit" },
 		z = { ":Translate ZH<CR>", "翻译为中文" },
 		e = { ":Translate EN<CR>", "翻译为英文" },
 	},
