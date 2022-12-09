@@ -10,10 +10,10 @@ nvim_tree.setup({
 
   -- 显示 git 状态图标
   git = {
-      enable =false,
+      enable =true,
   },
   -- project plugin 需要这样设置
-  update_cwd = false, -- 先改成false，有bug
+  update_cwd = true, 
   update_focused_file = {
       enable = true,
       update_cwd = true,
