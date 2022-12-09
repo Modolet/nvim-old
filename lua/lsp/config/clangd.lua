@@ -1,0 +1,15 @@
+local common = require("lsp.common")
+local opts = {
+	capabilities = common.capabilities,
+	flags = common.flags,
+	on_attach = function(client, bufnr)
+		common.disableFormat(client)
+		common.keyAttach(bufnr)
+		common.signature(bufnr)
+	end,
+}
+return {
+	on_setup = function(server)
+		server:setup({})
+	end,
+}
