@@ -22,7 +22,7 @@ map("n", "<C-Up>", ":resize +2<CR>", opt)
 map("n", "<C-Down>", ":resize -2<CR>", opt)
 
 -- Terminal相关
-map("t", "<Esc>", "<C-\\><C-n>", opt)
+-- map("t", "<Esc>", "<C-\\><C-n>", opt)
 
 -- 代码移动
 -- 上下滚动浏览
