@@ -7,32 +7,35 @@ if not status_ok then
 end
 ret.curScheme = colorscheme
 
-vim.g.transparent_enabled = true
-vim.g.tokyonight_transparent = vim.g.transparent_enabled
+local enableTrans = false
+if enableTrans then
+	vim.g.transparent_enabled = true
+	vim.g.tokyonight_transparent = vim.g.transparent_enabled
 
-local trans
-status_ok, trans = pcall(require, "transparent")
-if not status_ok then
-	vim.notify("未找到 transparent")
-	return ret
+	local trans
+	status_ok, trans = pcall(require, "transparent")
+	if not status_ok then
+		vim.notify("未找到 transparent")
+		return ret
+	end
+
+	local trans_setup = {
+		enable = true, -- boolean: enable transparent
+		extra_groups = { -- table/string: additional groups that should be cleared
+			-- In particular, when you set it to 'all', that means all available groups
+
+			-- example of akinsho/nvim-bufferline.lua
+			"BufferLineTabClose",
+			"BufferlineBufferSelected",
+			"BufferLineFill",
+			"BufferLineBackground",
+			"BufferLineSeparator",
+			"BufferLineIndicatorSelected",
+		},
+		exclude = {}, -- table: groups you don't want to clear
+	}
+
+	trans.setup(trans_setup)
 end
-
-local trans_setup = {
-	enable = true, -- boolean: enable transparent
-	extra_groups = { -- table/string: additional groups that should be cleared
-		-- In particular, when you set it to 'all', that means all available groups
-
-		-- example of akinsho/nvim-bufferline.lua
-		"BufferLineTabClose",
-		"BufferlineBufferSelected",
-		"BufferLineFill",
-		"BufferLineBackground",
-		"BufferLineSeparator",
-		"BufferLineIndicatorSelected",
-	},
-	exclude = {}, -- table: groups you don't want to clear
-}
-
-trans.setup(trans_setup)
 
 return ret
