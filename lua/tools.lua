@@ -32,9 +32,9 @@ local lspconfig = require("lspconfig")
 local mason = require("mason-lspconfig")
 
 M.func = function()
-	for _, server in ipairs(mason.get_installed_servers()) do
-		print(server)
-	end
+	local dapui = require("dapui")
+	dapui.setup()
+	dapui.open()
 end
 
 return M
