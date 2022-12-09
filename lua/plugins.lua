@@ -115,6 +115,8 @@ packer.startup({
 			"lewis6991/gitsigns.nvim",
 			requires = { "nvim-lua/plenary.nvim" },
 		})
+		-- dap服务器
+		use("mfussenegger/nvim-dap")
 	end,
 
 	-- 配置
