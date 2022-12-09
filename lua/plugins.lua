@@ -117,6 +117,9 @@ packer.startup({
 		})
 		-- dap服务器
 		use("mfussenegger/nvim-dap")
+		use("rcarriga/nvim-dap-ui")
+		use("theHamsta/nvim-dap-virtual-text")
+		use("jayp0521/mason-nvim-dap.nvim")
 	end,
 
 	-- 配置
