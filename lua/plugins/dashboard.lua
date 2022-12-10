@@ -8,9 +8,9 @@ local home = os.getenv("HOME")
 
 -- 获取Nerd图标 nerdfonts.com/cheat-sheet
 db.preview_command = "chafa"
-db.preview_file_path = home .. "/.config/nvim/static/pg.ico"
-db.preview_file_height = 20
-db.preview_file_width = 40
+db.preview_file_path = home .. "/.config/nvim/static/badapple.gif"
+db.preview_file_height = 30
+db.preview_file_width = 80
 
 -- db.custom_header = {
 -- 	[[          ▀████▀▄▄              ▄█ ]],
@@ -27,7 +27,8 @@ db.preview_file_width = 40
 db.custom_footer = {
 	"",
 	"",
-	"Modolet的NVIM",
+	"越程的NVIM",
+	"https://github.com/modolet/nvim",
 }
 
 db.custom_center = {
