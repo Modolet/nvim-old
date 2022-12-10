@@ -27,7 +27,7 @@ db.preview_file_width = 80
 db.custom_footer = {
 	"",
 	"",
-	"越程的NVIM",
+	"Modolet的NVIM",
 	"https://github.com/modolet/nvim",
 }
 
