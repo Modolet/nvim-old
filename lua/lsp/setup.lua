@@ -4,6 +4,12 @@ if not status then
 	return
 end
 
+local status, mnd = pcall(require, "mason-nvim-dap") -- 必须在Mason setup后立刻加载mason-nvim-dap
+if not status then
+	vim.notify("未找到 mason-nvim-dap")
+	return
+end
+
 local status, mason_config = pcall(require, "mason-lspconfig")
 if not status then
 	vim.notify("未找到 mason-lspconfig")
@@ -26,6 +32,11 @@ mason.setup({
 			package_uninstalled = "✗",
 		},
 	},
+})
+
+mnd.setup({
+	ensure_installed = { "cppdbg", "python" },
+	automatic_setup = true,
 })
 
 -- mason-lspconfig uses the `lspconfig` server names in the APIs it exposes - not `mason.nvim` package names
