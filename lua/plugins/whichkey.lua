@@ -12,7 +12,7 @@ local register = {
 		e = { "<cmd>NvimTreeToggle<cr>", "文件管理器" },
 		o = { "<cmd>AerialToggle<cr>", "大纲" },
 		-- 查找项目
-		p = { "<cmd>Telescope find_files<CR>", "项目" },
+		p = { "<cmd>Telescope projects<CR>", "项目" },
 		f = {
 			name = "查找",
 			f = { "<cmd>Telescope find_files<cr>", "文件" },
@@ -45,6 +45,23 @@ local register = {
 			p = { "<cmd>edit ~/.config/nvim/lua/plugins.lua<cr>", "编辑插件" },
 			-- 重新读取配置
 			r = { "<cmd>luafile %<cr>", "重新读取配置" },
+		},
+		c = {
+			name = "CMAKE",
+			C = { "<cmd>CMake clean<cr>", "清理" },
+			b = { "<cmd>CMake build<cr>", "编译" },
+			D = { "<cmd>CMake debug<cr>", "调试" },
+			c = { "<cmd>CMake configure<cr>", "配置" },
+			a = { "<cmd>CMake build_all<cr>", "全部编译" },
+			e = { "<cmd>CMake clear_cache<cr>", "清理缓存" },
+			r = { "<cmd>CMake build_and_run<cr>", "编译并运行" },
+			t = { "<cmd>CMake select_target<cr>", "选择目标" },
+			T = { "<cmd>CMake select_build_type<cr>", "选择编译类型" },
+			o = { "<cmd>CMake open_build_dir<cr>", "打开构建文件夹" },
+			p = { "<cmd>CMake create_project<cr>", "新建项目" },
+			d = { "<cmd>CMake build_and_debug<cr>", "编译并调试" },
+			A = { "<cmd>CMake set_target_args<cr>", "设置编译参数" },
+			R = { "<cmd>CMake run<cr>", "运行" },
 		},
 	},
 
@@ -85,13 +102,13 @@ local register = {
 	g = {
 		name = "跳转",
 		-- LSP操作全部使用Lspsaga实现
-		d = { "<cmd>lua require('lspsaga.provider').preview_definition()<CR>", "转到定义" },
+		d = { "<cmd>lua require('tools').gd()<CR>", "转到定义" },
 		r = { "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", "转到引用" },
 		n = { "<cmd>lua require('lspsaga.rename').rename()<CR>", "重命名" },
-		h = { "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", "查找符号" },
+		h = { "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "查看Hover" },
 		p = { "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", "查看当前行诊断" },
-		j = { "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>", "下一个诊断" },
-		k = { "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>", "上一个诊断" },
+		j = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "下一个诊断" },
+		k = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "上一个诊断" },
 		f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "格式化" },
 		a = { "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "代码操作" },
 	},
