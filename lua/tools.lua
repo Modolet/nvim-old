@@ -28,13 +28,16 @@ M.append_semicolon = function()
 	end
 end
 
-local lspconfig = require("lspconfig")
-local mason = require("mason-lspconfig")
-
 M.func = function()
-	local dapui = require("dapui")
-	dapui.setup()
-	dapui.open()
+	local clang_format_path = vim.fn.stdpath("config") .. "static/clang-format"
+	print(clang_format_path)
+end
+
+M.gd = function()
+	require("telescope.builtin").lsp_definitions({
+		initial_mode = "normal",
+		-- ignore_filename = false,
+	})
 end
 
 return M
