@@ -120,6 +120,9 @@ packer.startup({
 		use("rcarriga/nvim-dap-ui")
 		use("theHamsta/nvim-dap-virtual-text")
 		use("jayp0521/mason-nvim-dap.nvim")
+
+		-- lastpacce
+		use("ethanholz/nvim-lastplace")
 	end,
 
 	-- 配置
@@ -135,7 +138,7 @@ packer.startup({
 			-- default_url_format = "https://mirror.ghproxy.com/https://github.com/%s",
 			-- default_url_format = "https://gitcode.net/mirrors/%s",
 			-- default_url_format = "https://gitclone.com/github.com/%s",
-			default_url_format = "git@github.com:%s", -- 换用 git 协议
+			-- default_url_format = "git@github.com:%s", -- 换用 git 协议
 		},
 	},
 })
