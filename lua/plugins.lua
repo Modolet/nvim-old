@@ -123,6 +123,22 @@ packer.startup({
 
 		-- lastpacce
 		use("ethanholz/nvim-lastplace")
+		-- C++ 生成定义
+		use({ "Badhi/nvim-treesitter-cpp-tools", requires = { "nvim-treesitter/nvim-treesitter" } })
+		-- cmake
+		use("ravenxrz/neovim-cmake")
+		-- ui选择框
+		use("nvim-telescope/telescope-ui-select.nvim")
+
+		-- use "tom-anders/telescope-vim-bookmarks.nvim"
+		use("nvim-telescope/telescope-dap.nvim")
+		--[[
+            :Telescope dap commands
+            :Telescope dap configurations
+            :Telescope dap list_breakpoints
+            :Telescope dap variables
+            :Telescope dap frames
+        --]]
 	end,
 
 	-- 配置
