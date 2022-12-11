@@ -5,12 +5,12 @@ require("colorscheme")
 require("plugins.nvim-notify")
 
 -- 复制到系统剪切板
-vim.cmd([[
-augroup fix_yank
-    autocmd!
-    autocmd TextYankPost * if v:event.operator ==# 'y' | call system('/mnt/c/Windows/System32/clip.exe', @0) | endif
-augroup END
-]])
+-- vim.cmd([[
+-- augroup fix_yank
+--     autocmd!
+--     autocmd TextYankPost * if v:event.operator ==# 'y' | call system('/mnt/c/Windows/System32/clip.exe', @0) | endif
+-- augroup END
+-- ]])
 
 -- 复制时高亮
 vim.api.nvim_create_autocmd("TextYankPost", {
