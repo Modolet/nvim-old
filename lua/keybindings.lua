@@ -21,6 +21,10 @@ map("n", "q", "<Plug>(leap-forward-to)", opt)
 map("n", "Q", "<Plug>(leap-backward-to)", opt)
 map("n", "gq", "<Plug>(leap-cross-window)", opt)
 
+-- 系统剪切板
+map("n", "<C-y>", '"*yy', opt)
+map("v", "<C-y>", '"*y', opt)
+
 -- 取消原本S键的功能
 map("n", "s", "", opt)
 map("n", "so", "", opt)
