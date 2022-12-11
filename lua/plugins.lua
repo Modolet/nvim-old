@@ -132,6 +132,8 @@ packer.startup({
 
 		-- use "tom-anders/telescope-vim-bookmarks.nvim"
 		use("nvim-telescope/telescope-dap.nvim")
+		-- 快速跳转插件
+		use("ggandor/leap.nvim")
 		--[[
             :Telescope dap commands
             :Telescope dap configurations
