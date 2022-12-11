@@ -12,17 +12,25 @@ map("i", "<M-o>", "<Esc>:lua require('tools').append_semicolon()<CR>o", opt)
 map("i", "<M-O>", "<Esc>:lua require('tools').append_semicolon()<CR>O", opt)
 map("n", "<M-o>", ":lua require('tools').append_semicolon()<CR>o", opt)
 map("n", "<M-O>", ":lua require('tools').append_semicolon()<CR>O", opt)
+map("n", "H", "^", opt)
+map("n", "L", "$", opt)
+map("v", "H", "^", opt)
+map("v", "L", "$", opt)
+map("n", [[\]], "q", opt)
+map("n", "q", "<Plug>(leap-forward-to)", opt)
+map("n", "Q", "<Plug>(leap-backward-to)", opt)
+map("n", "gq", "<Plug>(leap-cross-window)", opt)
 
 -- 取消原本S键的功能
 map("n", "s", "", opt)
 map("n", "so", "", opt)
 
 -- 左右比例控制
-map("n", "<C-Left>", ":vertical resize -2<CR>", opt)
-map("n", "<C-Right>", ":vertical resize +2<CR>", opt)
+map("n", "<C-Left>", "2<C-w><", opt)
+map("n", "<C-Right>", "2<C-w>>", opt)
 -- 上下比例控制
-map("n", "<C-Up>", ":resize +2<CR>", opt)
-map("n", "<C-Down>", ":resize -2<CR>", opt)
+map("n", "<C-Up>", "2<C-w>+", opt)
+map("n", "<C-Down>", "2<C-w>-", opt)
 
 -- Terminal相关
 -- map("t", "<Esc>", "<C-\\><C-n>", opt)
