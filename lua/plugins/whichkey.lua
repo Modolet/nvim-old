@@ -86,7 +86,10 @@ local register = {
 		e = { ":Translate EN<CR>", "翻译为英文" },
 	},
 	s = {
-		name = "分屏",
+		name = "分屏、搜索",
+		-- 切换分屏
+		n = { "<C-w>w", "下个分屏" },
+		p = { "<C-w>p", "上个分屏" },
 		v = { ":vsp<CR>", "横向分屏" },
 		i = { ":sp<CR>", "纵向分屏" },
 		h = { "<C-w>h", "左边分屏" },
@@ -98,6 +101,15 @@ local register = {
 		K = { "<C-w>K", "分屏移到上侧" },
 		L = { "<C-w>L", "分屏移到右侧" },
 		["="] = { [[<C-w>=]], "等比例分屏" },
+		--#region 搜索
+		-- 小写搜索当前文件，大写搜索所有文件
+		-- 用spectre搜索当前单词
+		w = { "<cmd>lua require('spectre').open_file_search({select_word = true})<cr>", "搜索当前单词" },
+		f = { "<cmd>lua require('spectre').open_file_search()<cr>", "搜索" },
+		W = { "<cmd>lua require('spectre').open_visual({select_word = true})<cr>", "搜索当前单词(所有文件)" },
+		F = { "<cmd>lua require('spectre').open_visual()<cr>", "搜索(所有文件)" },
+
+		--#endregion
 	},
 	g = {
 		name = "跳转",
@@ -110,7 +122,7 @@ local register = {
 		j = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "下一个诊断" },
 		k = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "上一个诊断" },
 		f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "格式化" },
-		a = { "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "代码操作" },
+		c = { "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "代码操作" },
 	},
 }
 
