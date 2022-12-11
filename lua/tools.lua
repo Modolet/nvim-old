@@ -28,11 +28,6 @@ M.append_semicolon = function()
 	end
 end
 
-M.func = function()
-	local clang_format_path = vim.fn.stdpath("config") .. "static/clang-format"
-	print(clang_format_path)
-end
-
 M.gd = function()
 	require("telescope.builtin").lsp_definitions({
 		initial_mode = "normal",
@@ -62,4 +57,37 @@ M.welcome = function()
 		vim.notify("🛌夜深了,快睡觉吧~ " .. user .. "! 🛌")
 	end
 end
+
+M.getRandomCatFile = function()
+	local files = vim.fn.readdir(vim.fn.stdpath("config") .. "/static/cats", [[v:val =~ '\.cat$']])
+	math.randomseed(os.time())
+	return files[math.random(1, #files)]
+end
+
+-- 获取指定文件的行数和最长的一行的字符数
+M.get_file_info = function(file)
+	local ret = {
+		line_num = 0,
+		max_line_len = 0,
+	}
+	local f = io.open(file, "r")
+	if f == nil then
+		return ret
+	end
+	for line in f:lines() do
+		ret.line_num = ret.line_num + 1
+		if string.len(line) > ret.max_line_len then
+			ret.max_line_len = string.len(line)
+		end
+	end
+	f:close()
+	return ret
+end
+
+M.func = function()
+	local info = M.get_file_info("/home/modolet/lja.py")
+	print(info.line_num)
+	print(info.max_line_len)
+end
+
 return M
