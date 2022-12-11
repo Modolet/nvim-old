@@ -48,40 +48,42 @@ db.custom_center = {
 		icon = "  ",
 		desc = "项目                                ",
 		action = "Telescope projects",
+		shortcut = "SPC f p",
 	},
 	{
 		icon = "  ",
 		desc = "最近文件                            ",
 		action = "Telescope oldfiles",
-	},
-	{
-		icon = "  ",
-		desc = "编辑按键绑定                        ",
-		action = "edit ~/.config/nvim/lua/keybindings.lua",
-	},
-	{
-		icon = "  ",
-		desc = "编辑项目                            ",
-		action = "edit ~/.local/share/nvim/project_nvim/project_history",
-	},
-	{
-		icon = "  ",
-		desc = "编辑nvim配置                        ",
-		action = "edit ~/.config/nvim",
-	},
-	{
-		icon = "  ",
-		desc = "修改主题                            ",
-		action = "ChangeColorScheme",
+		shortcut = "SPC f o",
 	},
 	{
 		icon = "  ",
 		desc = "查找文件                            ",
 		action = "Telescope find_files",
+		shortcut = "SPC f f",
 	},
 	{
 		icon = "  ",
 		desc = "查找文本                            ",
 		action = "Telescopecope live_grep",
+		shortcut = "SPC f a",
+	},
+	{
+		icon = "  ",
+		desc = "新建CMake项目                       ",
+		action = "CMake create_project",
+		shortcut = "SPC c p",
+	},
+	{
+		icon = "  ",
+		desc = "编辑nvim配置                        ",
+		action = "e ~/.config/nvim/",
+		shortcut = "SPC n d",
+	},
+	{
+		icon = "  ",
+		desc = "修改主题                            ",
+		action = "Telescope colorscheme",
+		shortcut = "SPC f t",
 	},
 }
