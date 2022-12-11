@@ -15,6 +15,8 @@ local register = {
 		p = { "<cmd>Telescope projects<CR>", "项目" },
 		f = {
 			name = "查找",
+			p = { "<cmd>Telescope projects<CR>", "项目" },
+			o = { "<cmd>Telescope oldfiles<CR>", "最近文件" },
 			f = { "<cmd>Telescope find_files<cr>", "文件" },
 			a = { "<cmd>Telescope live_grep<cr>", "全局搜索" },
 			c = { "<cmd>Telescope commands<cr>", "命令" },
@@ -34,7 +36,7 @@ local register = {
 		n = {
 			name = "NVIM配置",
 			-- 编辑NVIM目录
-			d = { "<cmd>edit ~/.config/nvim<cr>", "编辑NVIM配置" },
+			d = { "<cmd>edit ~/.config/nvim/<cr>", "编辑NVIM配置" },
 			-- whichkey
 			w = { "<cmd>edit ~/.config/nvim/lua/plugins/whichkey.lua<cr>", "编辑whichkey" },
 			-- 特殊快捷键
