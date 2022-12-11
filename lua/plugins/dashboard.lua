@@ -4,13 +4,24 @@ if not status then
 	return
 end
 
+local tools = require("tools")
+
+local files = vim.fn.readdir(vim.fn.stdpath("config") .. "/static/cats", [[v:val =~ '\.cat$']])
+math.randomseed(os.time())
 local home = os.getenv("HOME")
+local randomVal = math.random(1, #files)
+local file = home .. "/.config/nvim/static/cats/" .. files[randomVal]
+local fileInfo = tools.get_file_info(file)
 
 -- 获取Nerd图标 nerdfonts.com/cheat-sheet
-db.preview_command = "chafa"
-db.preview_file_path = home .. "/.config/nvim/static/badapple.gif"
-db.preview_file_height = 30
-db.preview_file_width = 80
+-- db.preview_command = "chafa"
+-- db.preview_file_path = home .. "/.config/nvim/static/badapple.gif"
+db.preview_command = 'echo "\n\n\n" | cat && cat | lolcat -F 0.3'
+db.preview_file_path = file
+db.preview_file_height = fileInfo.line_num + 3
+db.preview_file_width = fileInfo.max_line_len
+-- db.preview_file_height = 30
+-- db.preview_file_width = 80
 
 -- db.custom_header = {
 -- 	[[          ▀████▀▄▄              ▄█ ]],
@@ -29,6 +40,7 @@ db.custom_footer = {
 	"",
 	"Modolet的NVIM",
 	"https://github.com/modolet/nvim",
+	"Logo ID: " .. files[randomVal],
 }
 
 db.custom_center = {
