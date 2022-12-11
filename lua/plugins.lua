@@ -4,6 +4,10 @@ packer.startup({
 	function(use)
 		-- Packer可以管理自身
 		use("wbthomason/packer.nvim")
+		-- 加速lua
+		use("lewis6991/impatient.nvim")
+		-- 快速注释
+		use("numToStr/Comment.nvim")
 		-- 自己的插件列表
 		-- 透明插件
 		use("xiyaowong/nvim-transparent")
