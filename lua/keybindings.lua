@@ -52,7 +52,7 @@ map("n", "<C-q>", ":q<CR>", opt)
 map("n", "<C-s>", ":w<CR>", opt)
 
 -- 全选
-map("n", "<C-a>", "ggVG", opt)
+map("n", "<C-A>", "ggVG", opt)
 
 -- 插件快捷键
 local pluginKeys = {}
