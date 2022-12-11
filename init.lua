@@ -3,6 +3,7 @@ require("keybindings")
 require("plugins")
 require("colorscheme")
 require("plugins.nvim-notify")
+require("impatient")
 
 -- 复制到系统剪切板
 -- vim.cmd([[
