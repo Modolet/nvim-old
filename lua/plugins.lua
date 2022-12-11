@@ -5,10 +5,11 @@ packer.startup({
 		-- Packer可以管理自身
 		use("wbthomason/packer.nvim")
 		-- 自己的插件列表
-		-- 主题
-		-- -- 看腻了就去这里找 https://github.com/topics/neovim-colorscheme
 		-- 透明插件
 		use("xiyaowong/nvim-transparent")
+		-- 主题
+		-- -- 看腻了就去这里找 https://github.com/topics/neovim-colorscheme
+		use({ "catppuccin/nvim", as = "catppuccin" })
 		use("folke/tokyonight.nvim") -- tokyonight主题
 		use("mhartington/oceanic-next") -- nceanicNext主题
 		use("ellisonleao/gruvbox.nvim") -- gruvBox的lua版本
@@ -107,7 +108,9 @@ packer.startup({
 				})
 			end,
 		})
-		use("mg979/vim-visual-multi") -- 多光标"
+		-- use("mg979/vim-visual-multi") -- 多光标 不知道为啥 太鸡儿卡了 找了个替代品
+		use({ "otavioschwanck/cool-substitute.nvim" })
+
 		-- 函数预览 aerial
 		use("stevearc/aerial.nvim")
 		-- gitsigns
@@ -141,6 +144,8 @@ packer.startup({
             :Telescope dap variables
             :Telescope dap frames
         --]]
+		-- 查找替换插件
+		use("windwp/nvim-spectre")
 	end,
 
 	-- 配置
