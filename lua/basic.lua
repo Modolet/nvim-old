@@ -83,3 +83,4 @@ vim.o.showmode = false
 -- nvim-tree 强烈建议禁用这俩
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- vim.cmd([[unnamedplus set clipboard=unnamedplus]])
