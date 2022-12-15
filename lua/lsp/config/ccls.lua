@@ -1,30 +1,23 @@
+local enable = true
+
+if not enable then
+	return {
+		on_setup = function() end,
+	}
+end
+
 local common = require("lsp.common")
-local lsputil
 local status, ccls = pcall(require, "ccls")
 if not status then
 	vim.notify("未找到 ccls")
 	return
 end
 
-status, lsputil = pcall(require, "lspconfig.util")
-if not status then
-	vim.notify("未找到 lspconfig.util")
-	return
-end
-
 local opts = {
 	capabilities = common.capabilities,
 	flags = common.flags,
-	on_attach = function(client, bufnr)
-		common.disableFormat(client)
-		common.keyAttach(bufnr)
-		common.signature(bufnr)
-	end,
-	root_dir = function(fname)
-		return lsputil.root_pattern("compile_commands.json", "compile_flags.txt", ".git")(fname)
-			or lsputil.find_git_ancestor(fname)
-			or "."
-	end,
+	on_attach = common.on_attach,
+	root_dir = common.root_dir,
 	single_file_support = true,
 	-- custom handler
 	-- handlers = {
@@ -46,6 +39,20 @@ return {
 					enable = true,
 					envents = { "BufWritePost", "InsertLeave" },
 				},
+				--#region 和clang共存
+				disable_capabilities = {
+					completionProvider = true,
+					documentFormattingProvider = true,
+					documentRangeFormattingProvider = true,
+					documentHighlightProvider = true,
+					documentSymbolProvider = true,
+					workspaceSymbolProvider = true,
+					renameProvider = true,
+					hoverProvider = true,
+					codeActionProvider = true,
+				},
+				disable_diagnostics = true,
+				disable_signature = true,
 			},
 		})
 	end,

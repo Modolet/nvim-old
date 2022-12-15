@@ -2,17 +2,9 @@
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-
-local common = require("lsp.common")
+require("neodev").setup()
 
 local opts = {
-	capabilities = common.capabilities,
-	flags = common.flags,
-	on_attach = function(client, bufnr)
-		common.disableFormat(client)
-		common.keyAttach(bufnr)
-		common.signature(bufnr)
-	end,
 	settings = {
 		Lua = {
 			runtime = {
@@ -48,9 +40,4 @@ local opts = {
 	-- },
 }
 
-return {
-	on_setup = function(server)
-		require("neodev").setup()
-		server.setup(opts)
-	end,
-}
+return { opts }

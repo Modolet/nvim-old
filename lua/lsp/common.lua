@@ -26,7 +26,8 @@ M.signature = function(bufnr)
         vim.notify("未找到 lsp_signature")
         return
     end
-    lsp_signature.on_attach(signature_setup, bufnr)
+    -- lsp_signature.on_attach(signature_setup, bufnr)
+    lsp_signature.on_attach({}, bufnr)
 end
 
 local util = require("lspconfig.util")
@@ -35,6 +36,10 @@ vim.tbl_deep_extend("force", util.default_config.capabilities or vim.lsp.protoco
     textDocument = {
         completion = {
             editsNearCursor = true,
+        },
+        foldingRange = {
+            dynamicRegistration = true,
+            lineFoldingOnly = true,
         },
     },
     offsetEncoding = { "utf-8", "utf-16" },
@@ -47,5 +52,12 @@ M.capabilities = default_capabilities
 M.flags = {
     debounce_text_changes = 150,
 }
+
+M.root_dir = require("tools").rootDir
+M.on_attach = function(client, bufnr)
+    M.disableFormat(client)
+    M.signature(bufnr)
+    require("tools").setpwd()
+end
 
 return M
