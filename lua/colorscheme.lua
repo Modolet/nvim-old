@@ -1,10 +1,29 @@
 -- local colorscheme = "tokyonight"
 local colorscheme = "catppuccin"
+-- local colorscheme = "neon"
+local transparent = false
 
 local status, cat = pcall(require, "catppuccin")
 if not status then
 	print("未找到 catppuccin")
 end
+
+-- 判断是否存在Neovide
+-- if vim.fn.exists("g:loaded_neovide") == 1 then
+-- 	vim.cmd([[
+--     if exists("g:neovide")
+--        " g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+--         let g:neovide_transparency = 0.0
+--         let g:transparency = 0.8
+--         let g:neovide_background_color = '#0f1117'.printf('%x', float2nr(255 * g:transparency))
+--     endif
+--     ]])
+-- end
+
+vim.g.neon_style = "Doom"
+vim.g.neon_italic_keyword = true
+vim.g.neon_italic_function = true
+vim.g.neon_transparent = transparent
 
 cat.setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -12,7 +31,7 @@ cat.setup({
 		light = "latte",
 		dark = "mocha",
 	},
-	transparent_background = true,
+	transparent_background = transparent,
 	term_colors = false,
 	dim_inactive = {
 		enabled = false,
@@ -49,19 +68,11 @@ cat.setup({
 })
 
 require("tokyonight").setup({
-	transparent = true,
+	transparent = transparent,
 })
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-	vim.notify("colorscheme " .. colorscheme .. "启用失败！")
-	return
-end
-
-local enableTrans = false
-if enableTrans then
+if transparent then
 	vim.g.transparent_enabled = true
-	vim.g.tokyonight_transparent = vim.g.transparent_enabled
 
 	local trans
 	status_ok, trans = pcall(require, "transparent")
@@ -87,4 +98,10 @@ if enableTrans then
 	}
 
 	trans.setup(trans_setup)
+end
+
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+	vim.notify("colorscheme " .. colorscheme .. "启用失败！")
+	return
 end
