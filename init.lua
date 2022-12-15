@@ -13,23 +13,40 @@ require("impatient")
 -- augroup END
 -- ]])
 
--- 复制时高亮
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank({
-			higroup = "IncSearch",
-			timeout = 100,
-		})
-	end,
+-- 保存缩进
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    pattern = { "*.*" },
+    callback = function()
+        pcall(vim.cmd, "mkview")
+    end,
 })
 
+-- 读取缩进、取消换行自动注释
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = { "*.*" },
+    callback = function()
+        pcall(vim.cmd, "loadview")
+        vim.cmd("setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+    end,
+})
+
+-- 复制高亮
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "IncSearch",
+            timeout = 100,
+        })
+    end,
+})
+
+-- 读取插件配置
 for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/plugins", [[v:val =~ '\.lua$']])) do
-	require("plugins." .. file:gsub("%.lua$", ""))
+    require("plugins." .. file:gsub("%.lua$", ""))
 end
 
 require("lsp.setup")
 require("lsp.cmp")
 require("lsp.ui")
 require("dap.setup")
-
 require("tools").welcome()
