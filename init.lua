@@ -1,6 +1,6 @@
+require("plugins")
 require("basic")
 require("keybindings")
-require("plugins")
 require("colorscheme")
 require("plugins.nvim-notify")
 require("impatient")
