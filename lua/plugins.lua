@@ -20,35 +20,18 @@ packer.startup({
         use("rafamadriz/neon")
         -- -- 看腻了就去这里找 https://github.com/topics/neovim-colorscheme
         -----------------------------------------功能---------------------------------------
-        -- use({ -- 在终端显示图像
-        -- 	"samodostal/image.nvim",
-        -- 	requires = {
-        -- 		"nvim-lua/plenary.nvim",
-        -- 		{ "m00qek/baleia.nvim", tag = "v1.2.0" },
-        -- 	},
-        -- })
-        -- use({
-        -- 	"adelarsq/image_preview.nvim",
-        -- 	config = function()
-        -- 		require("image_preview").setup()
-        -- 	end,
-        -- }) -- 在终端显示图片2
+        use({
+            "jedrzejboczar/toggletasks.nvim",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "akinsho/toggleterm.nvim",
+                "nvim-telescope/telescope.nvim/",
+            },
+            -- To enable YAML config support
+            rocks = "lyaml",
+        })
         use("lukas-reineke/indent-blankline.nvim") -- 竖线插件
         use("akinsho/toggleterm.nvim") -- 终端插件
-        -- use({ -- task插件
-        -- 	"jedrzejboczar/toggletasks.nvim",
-        -- 	requires = {
-        -- 		"nvim-lua/plenary.nvim",
-        -- 		"akinsho/toggleterm.nvim",
-        -- 		"nvim-telescope/telescope.nvim/",
-        -- 	},
-        -- 	-- To enable YAML config support
-        -- 	rocks = "lyaml",
-        -- })
-        -- use({
-        -- 	"pianocomposer321/yabs.nvim",
-        -- 	requires = { "nvim-lua/plenary.nvim" },
-        -- })
         use("nkakouros-original/numbers.nvim") -- 自动切换为绝对行号
         use("aserowy/tmux.nvim") -- tmux
         use("lewis6991/impatient.nvim") -- 加速lua
@@ -111,7 +94,11 @@ packer.startup({
         use("yamatsum/nvim-cursorline") -- 高亮当前选中词
         use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- 更现代化的折叠
         -----------------------------------------Telescope----------------------------------
-        use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- 搜索
+        use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" }, tag = "0.1.0" }) -- 搜索
+        use({ -- 提高telescope性能
+            "nvim-telescope/telescope-fzf-native.nvim",
+            run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        })
         use("nvim-telescope/telescope-symbols.nvim")
         use("ahmedkhalf/project.nvim") -- 项目管理插件
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- 语法高亮
@@ -200,7 +187,7 @@ packer.startup({
 
     -- 配置
     config = {
-        max_jobs = 16,
+        max_jobs = 64,
         display = {
             open_fn = function()
                 return require("packer.util").float({ border = "single" })
