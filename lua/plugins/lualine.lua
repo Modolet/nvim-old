@@ -39,12 +39,6 @@ lualine.setup({
 				"lsp_progress",
 				spinner_symbols = { " ", " ", " ", " ", " ", " " },
 			},
-			{
-				require("cool-substitute.status").status_with_icons,
-				color = function()
-					return { fg = require("cool-substitute.status").status_color() }
-				end,
-			},
 		},
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = { "progress" },

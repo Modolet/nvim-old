@@ -1,5 +1,5 @@
--- local colorscheme = "tokyonight"
-local colorscheme = "catppuccin"
+local colorscheme = "tokyonight"
+-- local colorscheme = "catppuccin"
 -- local colorscheme = "neon"
 local transparent = false
 

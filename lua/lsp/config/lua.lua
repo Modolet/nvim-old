@@ -3,8 +3,16 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 require("neodev").setup()
+local common = require("lsp.common")
 
 local opts = {
+	capabilities = common.capabilities,
+	flags = common.flags,
+	on_attach = common.on_attach,
+	root_dir = common.root_dir,
+	single_file_support = true,
+	default_mappings = false,
+	mappings = {},
 	settings = {
 		Lua = {
 			runtime = {

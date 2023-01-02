@@ -1,4 +1,4 @@
-local status, aerial = pcall(require, "aerial")
+--[[ local status, aerial = pcall(require, "aerial")
 if not status then
 	vim.notify("未找到 aerial.nvim", vim.log.levels.ERROR)
 	return
@@ -19,4 +19,4 @@ aerial.setup({
 		buftypes = "special",
 		wintypes = "special",
 	},
-})
+}) ]]
