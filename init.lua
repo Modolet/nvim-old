@@ -13,22 +13,29 @@ require("impatient")
 -- augroup END
 -- ]])
 
--- 保存缩进
--- vim.api.nvim_create_autocmd("BufWinLeave", {
---     pattern = { "*.*" },
---     callback = function()
---         pcall(vim.cmd, "mkview")
---     end,
--- })
+-- 保存缩进 、设置Pwd
+vim.api.nvim_create_autocmd("BufWinLeave", {
+	pattern = { "*" },
+	callback = function()
+		pcall(vim.cmd, "mkview")
+	end,
+})
+
+vim.api.nvim_create_autocmd("DirChanged", {
+	pattern = { "*" },
+	callback = function()
+		require("tools").setpwd()
+	end,
+})
 
 -- 读取缩进、取消换行自动注释
--- vim.api.nvim_create_autocmd("BufWinEnter", {
---     pattern = { "*.*" },
---     callback = function()
---         pcall(vim.cmd, "loadview")
---         vim.cmd("setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
---     end,
--- })
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = { "*" },
+	callback = function()
+		pcall(vim.cmd, "loadview")
+		vim.cmd("setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+	end,
+})
 
 -- 复制高亮
 vim.api.nvim_create_autocmd("TextYankPost", {
