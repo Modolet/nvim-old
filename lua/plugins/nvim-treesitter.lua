@@ -15,6 +15,13 @@ treesitter.setup({
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
+		disable = function(lang, buf)
+			local max_filesize = 100 * 1024 -- 100 KB
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
 	},
 	incremental_selection = {
 		enable = true,
@@ -31,7 +38,7 @@ treesitter.setup({
 			accept = "<tab>", -- optional keymapping for accept preview
 		},
 		header_extension = "h", -- optional
-		source_extension = "cxx", -- optional
+		source_extension = "cpp", -- optional
 		custom_define_class_function_commands = { -- optional
 			TSCppImplWrite = {
 				output_handle = require("nvim-treesitter.nt-cpp-tools.output_handlers").get_add_to_cpp(),
