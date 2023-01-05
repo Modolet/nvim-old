@@ -138,10 +138,11 @@ local register = {
 		-- LSP操作全部使用Lspsaga实现
 		-- d = { "<cmd>lua require('tools').gd()<CR>", "转到定义" },
 		-- r = { "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", "转到引用" },
+		a = { "<cmd>lua require('tools').toggle_header()<CR>", "头文件与源文件切换" },
+		t = { "V:TSCppDefineClassFunc<cr>", "生成定义" },
+		T = { "V:TSCppImplWrite", "生成定义并写入到源文件" },
 		d = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "转到定义" },
 		r = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", "转到引用" },
-		q = { "<cmd>lua require('goto-preview').close_all_win()<CR>", "关闭所有窗口" },
-		t = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", "转到定义" },
 		i = { "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "转到实现" },
 		n = { "<cmd>lua require('lspsaga.rename').rename()<CR>", "重命名" },
 		h = { "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "查看Hover" },
@@ -159,6 +160,12 @@ local vregister = {
 	[">"] = { [[>gv]], "缩进" },
 	["<"] = { [[<gv]], "反缩进" },
 	t = { ":Pantran<cr>", "翻译" },
+	g = {
+		name = "跳转",
+		a = { "<cmd>lua require('tools').toggle_header()<CR>", "头文件与源文件切换" },
+		t = { ":TSCppDefineClassFunc<cr>", "生成定义" },
+		T = { ":TSCppImplWrite", "生成定义并写入到源文件" },
+	},
 }
 
 local nopts = {
