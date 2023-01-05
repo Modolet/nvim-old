@@ -37,7 +37,7 @@ packer.startup({
 		use("lewis6991/impatient.nvim") -- 加速lua
 		use("numToStr/Comment.nvim") -- 快速注释
 		use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } }) -- 状态栏
-		use("arkav/lualine-lsp-progress") -- 状态栏扩展
+		-- use("arkav/lualine-lsp-progress") -- 状态栏扩展
 		use("glepnir/dashboard-nvim") -- 启动页
 		use("folke/which-key.nvim") -- 按键提示
 		use("rcarriga/nvim-notify") -- 弹窗通知
@@ -161,6 +161,7 @@ packer.startup({
 				require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
 			end,
 		})
+		use("j-hui/fidget.nvim") -- 显示LSP进度
 		-----------------------------------------补全---------------------------------------
 		use("hrsh7th/nvim-cmp") -- 补全引擎
 		use("lukas-reineke/cmp-under-comparator") -- 调整补全顺序
