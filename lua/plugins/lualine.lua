@@ -9,21 +9,26 @@ local get_time = function()
 	return time
 end
 
+local get_date = function()
+	local date = os.date("%Y年%m月%d日")
+	return date
+end
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
 		theme = "auto",
-		component_separators = { left = "", right = "" },
+		-- component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
-		-- 		component_separators = { left = "|", right = "|" },
-		-- 		section_separators = { left = " ", right = "" },
+		component_separators = { left = "|", right = "|" },
+		-- section_separators = { left = " ", right = "" },
 		disabled_filetypes = {
 			statusline = {},
 			winbar = {},
 		},
 		ignore_focus = {},
 		always_divide_middle = true,
-		globalstatus = false,
+		globalstatus = true,
 		refresh = {
 			statusline = 1000,
 			tabline = 1000,
@@ -31,18 +36,27 @@ lualine.setup({
 		},
 	},
 	sections = {
-		lualine_a = { "mode" },
+		lualine_a = {
+			function()
+				-- 获取系统用户名并返回
+				return vim.fn.expand("$USER")
+			end,
+			"mode",
+		},
 		lualine_b = { "branch", "diff", "diagnostics" },
 		lualine_c = {
+			function()
+				return vim.api.nvim_call_function("getcwd", {})
+			end,
 			"filename",
-			{
-				"lsp_progress",
-				spinner_symbols = { " ", " ", " ", " ", " ", " " },
-			},
+			-- {
+			-- 	"lsp_progress",
+			-- 	spinner_symbols = { " ", " ", " ", " ", " ", " " },
+			-- },
 		},
 		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = { "location", get_time },
+		lualine_y = { "location", "progress" },
+		lualine_z = { get_date, get_time },
 	},
 	inactive_sections = {
 		lualine_a = {},
