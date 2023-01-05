@@ -1,7 +1,7 @@
-local colorscheme = "tokyonight"
+-- local colorscheme = "tokyonight"
 -- local colorscheme = "catppuccin"
--- local colorscheme = "neon"
-local transparent = false
+local colorscheme = "neon"
+local transparent = true
 
 local status, cat = pcall(require, "catppuccin")
 if not status then
