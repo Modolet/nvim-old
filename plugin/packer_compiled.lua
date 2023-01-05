@@ -164,6 +164,11 @@ _G.packer_plugins = {
     path = "/home/modolet/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "git@github.com:glepnir/dashboard-nvim"
   },
+  ["fidget.nvim"] = {
+    loaded = true,
+    path = "/home/modolet/.local/share/nvim/site/pack/packer/start/fidget.nvim",
+    url = "git@github.com:j-hui/fidget.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/modolet/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -218,11 +223,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/modolet/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "git@github.com:tami5/lspsaga.nvim"
-  },
-  ["lualine-lsp-progress"] = {
-    loaded = true,
-    path = "/home/modolet/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress",
-    url = "git@github.com:arkav/lualine-lsp-progress"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -541,18 +541,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: barbecue.nvim
-time([[Config for barbecue.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rbarbecue\frequire\0", "config", "barbecue.nvim")
-time([[Config for barbecue.nvim]], false)
--- Config for: nvim-scrollbar
-time([[Config for nvim-scrollbar]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14scrollbar\frequire\0", "config", "nvim-scrollbar")
-time([[Config for nvim-scrollbar]], false)
 -- Config for: nvim-lightbulb
 time([[Config for nvim-lightbulb]], true)
 try_loadstring("\27LJ\2\n_\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fautocmd\1\0\0\1\0\1\fenabled\2\nsetup\19nvim-lightbulb\frequire\0", "config", "nvim-lightbulb")
 time([[Config for nvim-lightbulb]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: barbecue.nvim
+time([[Config for barbecue.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rbarbecue\frequire\0", "config", "barbecue.nvim")
+time([[Config for barbecue.nvim]], false)
 -- Config for: neotest
 time([[Config for neotest]], true)
 try_loadstring("\27LJ\2\n|\0\1\6\0\b\0\0229\1\0\0\18\3\1\0009\1\1\1'\4\2\0'\5\3\0B\1\4\2\18\3\1\0009\1\1\1'\4\4\0'\5\3\0B\1\4\2\18\3\1\0009\1\1\1'\4\5\0'\5\3\0B\1\4\2\18\3\1\0009\1\1\1'\4\6\0'\5\a\0B\1\4\2L\1\2\0\5\t^%s+\b%s+\6\t\6 \6\n\tgsub\fmessageõ\1\1\0\b\0\16\1\0286\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\4\0019\1\5\0015\3\t\0005\4\a\0003\5\6\0=\5\b\4=\4\n\3\18\4\0\0B\1\3\0016\1\v\0'\3\3\0B\1\2\0029\1\f\0015\3\14\0004\4\3\0006\5\v\0'\a\r\0B\5\2\0?\5\0\0=\4\15\3B\1\2\1K\0\1\0\radapters\1\0\0\15neotest-go\nsetup\frequire\17virtual_text\1\0\0\vformat\1\0\0\0\vconfig\15diagnostic\fneotest\26nvim_create_namespace\bapi\bvim\3€€À™\4\0", "config", "neotest")
@@ -561,10 +561,10 @@ time([[Config for neotest]], false)
 time([[Config for nvim-surround]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
 time([[Config for nvim-surround]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-scrollbar
+time([[Config for nvim-scrollbar]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14scrollbar\frequire\0", "config", "nvim-scrollbar")
+time([[Config for nvim-scrollbar]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
