@@ -48,4 +48,4 @@ local opts = {
 	-- },
 }
 
-return { opts }
+return opts
