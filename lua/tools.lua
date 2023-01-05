@@ -33,13 +33,6 @@ M.append_semicolon = function()
 	end
 end
 
-M.gd = function()
-	require("telescope.builtin").lsp_definitions({
-		initial_mode = "normal",
-		-- ignore_filename = false,
-	})
-end
-
 M.lsp_formatting = function(bufnr)
 	vim.lsp.buf.format({
 		filter = function(client)
@@ -48,12 +41,6 @@ M.lsp_formatting = function(bufnr)
 		end,
 		bufnr = bufnr,
 	})
-end
-
-M.format_with_view = function()
-	-- vim.cmd("mkview")
-	vim.lsp.buf.format({ sync = true })
-	-- vim.cmd("loadview")
 end
 
 M.welcome = function()
@@ -88,7 +75,7 @@ M.getRandomCatFile = function()
 	return files[math.random(1, #files)]
 end
 
--- 获取指定文件的行数和最长的一行的字符数
+-- 获取指定文件的行数和最长的一行的字符数 用于dashboard
 M.get_file_info = function(file)
 	local ret = {
 		line_num = 0,
@@ -109,10 +96,7 @@ M.get_file_info = function(file)
 end
 
 M.func = function()
-	local result = M.rootDir()
-	-- 输出result的类型
-	print(M.rootDir())
-	M.setpwd()
+	M.switch_cpp_file()
 end
 
 M.rootDir = function(fname)
@@ -131,6 +115,47 @@ M.setpwd = function(pwd)
 		pwd = M.rootDir()
 	end
 	vim.api.nvim_set_current_dir(pwd)
+end
+
+M.toggle_header = function()
+	-- 获取当前文件类型
+	local filetype = vim.bo.filetype
+	if filetype ~= "cpp" then
+		return
+	end
+	local header_file_ext = { ".h" } -- 头文件扩展名
+	local source_file_ext = { ".cpp", ".c++", ".cc" } -- 源文件扩展名
+	local cur_dir = vim.fn.expand("%:p:h")
+	local cur_file_name_no_ext = vim.fn.expand("%:t:r")
+	local cur_file_ext = vim.fn.expand("%:e")
+	cur_file_ext = "." .. cur_file_ext
+	for _, ext in ipairs(header_file_ext) do
+		if cur_file_ext == ext then
+			-- 头文件
+			for _, ext1 in ipairs(source_file_ext) do
+				local file = cur_dir .. "/" .. cur_file_name_no_ext .. ext1
+				if vim.fn.filereadable(file) == 1 then
+					vim.notify("switch to " .. file, "info", { title = "Switch", timeout = 10 })
+					vim.cmd("e " .. file)
+					return true
+				end
+			end
+		end
+	end
+	for _, ext in ipairs(source_file_ext) do
+		if cur_file_ext == ext then
+			-- 源文件
+			for _, ext1 in ipairs(header_file_ext) do
+				local file = cur_dir .. "/" .. cur_file_name_no_ext .. ext1
+				if vim.fn.filereadable(file) == 1 then
+					vim.notify("switch to " .. file, "info", { title = "Switch", timeout = 10 })
+					vim.cmd("e " .. file)
+					return true
+				end
+			end
+		end
+	end
+	return false
 end
 
 return M
