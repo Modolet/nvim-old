@@ -10,6 +10,9 @@ cmp.setup({
 	},
 })
 
+-- 显示LSP进度
+require("fidget").setup({})
+
 -- 自定义图标
 vim.diagnostic.config({
 	virtual_text = true,
@@ -102,7 +105,24 @@ M.formatting = {
 		-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
 		before = function(entry, vim_item)
 			-- Source 显示提示来源
-			vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+			local name = string.upper(entry.source.name)
+			if name == "NVIM_LSP" then
+				name = "NLSP"
+			elseif name == "COPILOT" then
+				name = "COPI"
+			elseif name == "BUFFER" then
+				name = "BUFF"
+			elseif name == "LUASNIP" then
+				name = "SNIP"
+			elseif name == "PATH" then
+				name = "PATH"
+			else
+				name = string.sub(name, 1, 4)
+			end
+
+			name = string.format("[%s]", name)
+			-- vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+			vim_item.menu = name
 			return vim_item
 		end,
 	}),
