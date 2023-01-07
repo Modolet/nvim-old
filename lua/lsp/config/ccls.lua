@@ -19,6 +19,8 @@ local opts = {
 	on_attach = common.on_attach,
 	root_dir = common.root_dir,
 	single_file_support = true,
+	default_mappings = false,
+	mappings = {},
 	-- custom handler
 	-- handlers = {
 	--   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -35,24 +37,24 @@ return {
 		ccls.setup({
 			lsp = {
 				lspconfig = opts,
-				codelens = {
-					enable = true,
-					envents = { "BufWritePost", "InsertLeave" },
-				},
+				-- codelens = {
+				-- 	enable = false,
+				-- 	envents = { "BufWritePost", "InsertLeave" },
+				-- },
 				--#region 和clang共存
-				disable_capabilities = {
-					completionProvider = true,
-					documentFormattingProvider = true,
-					documentRangeFormattingProvider = true,
-					documentHighlightProvider = true,
-					documentSymbolProvider = true,
-					workspaceSymbolProvider = true,
-					renameProvider = true,
-					hoverProvider = true,
-					codeActionProvider = true,
-				},
-				disable_diagnostics = true,
-				disable_signature = true,
+				-- disable_capabilities = {
+				-- 	completionProvider = true,
+				-- 	documentFormattingProvider = true,
+				-- 	documentRangeFormattingProvider = true,
+				-- 	documentHighlightProvider = true,
+				-- 	documentSymbolProvider = true,
+				-- 	workspaceSymbolProvider = true,
+				-- 	renameProvider = true,
+				-- 	hoverProvider = true,
+				-- 	codeActionProvider = true,
+				-- },
+				-- disable_diagnostics = true,
+				-- disable_signature = true,
 			},
 		})
 	end,
