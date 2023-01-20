@@ -55,7 +55,7 @@ M.flags = {
 
 M.root_dir = require("tools").rootDir
 M.on_attach = function(client, bufnr)
-	require("virtualtypes").on_attach(client, bufnr)
+	-- require("virtualtypes").on_attach(client, bufnr)
 	-- M.disableFormat(client)
 	M.signature(bufnr)
 	require("tools").setpwd()

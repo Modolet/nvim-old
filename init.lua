@@ -1,4 +1,22 @@
-require("plugins")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.notify("开始安装lazy.nvim")
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+	vim.notify("lazy.nvim安装完成，请重新启动NVIM")
+	return
+end
+vim.opt.rtp:prepend(lazypath)
+local plugins = require("plugins").plugins
+local opts = require("plugins").opts
+require("lazy").setup(plugins, opts)
+
 require("basic")
 require("keybindings")
 require("colorscheme")
