@@ -13,6 +13,16 @@ M.plugins = {
 	{ "nyoom-engineering/oxocarbon.nvim" },
 	"xiyaowong/nvim-transparent", -- 透明插件
 	"rafamadriz/neon",
+	{
+		"folke/noice.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
 	-- -- 看腻了就去这里找 https://github.com/topics/neovim-colorscheme
 	-----------------------------------------功能---------------------------------------
 	"jedrzejboczar/toggletasks.nvim",
@@ -45,11 +55,8 @@ M.plugins = {
 	},
 	{
 		"kylechui/nvim-surround",
-		tag = "*", -- Use for stability; omit to use `main` branch for the latest featureskeybindings
 		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
+			require("nvim-surround").setup()
 		end,
 	},
 	"ethanholz/nvim-lastplace", -- lastpacce

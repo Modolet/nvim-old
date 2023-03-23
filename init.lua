@@ -15,9 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 local plugins = require("plugins").plugins
 local opts = require("plugins").opts
+require("basic")
 require("lazy").setup(plugins, opts)
 
-require("basic")
 require("keybindings")
 require("colorscheme")
 require("plugins.nvim-notify")

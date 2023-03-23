@@ -44,8 +44,14 @@ M.lsp_formatting = function(bufnr)
 end
 
 M.welcome = function()
+	local s, p_notify = pcall(require, "notify")
+	local c_notify = vim.notify
+	if s then
+		c_notify = p_notify.notify
+	end
+
 	local notify = function(msg)
-		vim.notify(msg, "info", { title = "Welcome", timeout = 200 })
+		c_notify(msg, "info", { title = "Welcome", timeout = 200 })
 	end
 	-- 获取用户名
 	local user = vim.fn.expand("$USER")

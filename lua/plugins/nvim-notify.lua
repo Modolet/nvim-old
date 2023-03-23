@@ -4,13 +4,22 @@ if not status then
 	return
 end
 
+local old_notify = notify.notify
+
 notify.setup({
 	background_colour = "#000000",
 })
 
-vim.notify = function(msg, ...)
+notify.notify = function(msg, ...)
 	if msg:match("warning: multiple different client offset_encodings") then
 		return
 	end
-	notify(msg, ...)
+	old_notify(msg, ...)
 end
+
+-- vim.notify = function(msg, ...)
+-- 	if msg:match("warning: multiple different client offset_encodings") then
+-- 		return
+-- 	end
+-- 	notify(msg, ...)
+-- end

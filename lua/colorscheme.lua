@@ -1,6 +1,28 @@
--- local colorscheme = "tokyonight"
+-- local colorscheme = "catppuccin-macchiato"
+-- local colorscheme = "catppuccin-frappe"
+local colorscheme = "catppuccin-mocha"
+-- local colorscheme = "catppuccin-latte"
 -- local colorscheme = "catppuccin"
-local colorscheme = "neon"
+
+-- local colorscheme = "tokyonight-storm"
+-- local colorscheme = "tokyonight-night"
+-- local colorscheme = "tokyonight-moon"
+-- local colorscheme = "tokyonight-day"
+-- local colorscheme = "tokyonight"
+
+-- local colorscheme = "OceanicNextLight"
+-- local colorscheme = "OceanicNext"
+
+-- local colorscheme = "gruvbox"
+
+-- local colorscheme = "zephyr"
+
+-- local colorscheme = "nord"
+-- local colorscheme = "nordfox"
+-- local colorscheme = "onedark"
+-- local colorscheme = "nightfox"
+
+-- local colorscheme = "oxocarbon"
 local transparent = true
 
 local status, cat = pcall(require, "catppuccin")
