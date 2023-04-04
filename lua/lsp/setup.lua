@@ -59,7 +59,7 @@ mnd.setup({
 
 mason_config.setup({
 	ensure_installed = {
-		"sumneko_lua",
+		"lua_ls",
 		"bashls",
 		"jsonls",
 		"pyright",

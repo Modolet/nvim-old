@@ -206,6 +206,12 @@ M.plugins = {
 	"rcarriga/nvim-dap-ui",
 	"theHamsta/nvim-dap-virtual-text",
 	"jayp0521/mason-nvim-dap.nvim",
+	{
+		"Weissle/persistent-breakpoints.nvim",
+		config = function()
+			require("persistent-breakpoints").setup({ load_breakpoints_event = { "BufReadPost" } })
+		end,
+	},
 }
 
 M.opts = {}

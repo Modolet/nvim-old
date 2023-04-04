@@ -9,7 +9,18 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 
 project.setup({
 	detection_methods = { "pattern" },
-	patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "CMakeLists.txt", "package.json", ".sln" },
+	patterns = {
+		".git",
+		"_darcs",
+		".hg",
+		".bzr",
+		".svn",
+		"Makefile",
+		"CMakeLists.txt",
+		"package.json",
+		".sln",
+		"xmake.lua",
+	},
 })
 
 local status, telescope = pcall(require, "telescope")

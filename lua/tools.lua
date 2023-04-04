@@ -111,7 +111,7 @@ M.rootDir = function(fname)
 	end
 
 	return lsputil.root_pattern(".git", ".hg", ".svn", "package.json", "go.mod", "Cargo.toml")(fname)
-		or lsputil.root_pattern("CMakeLists.txt", "Makefile")(fname)
+		or lsputil.root_pattern("CMakeLists.txt", "Makefile", "xmake.lua")(fname)
 		or lsputil.find_git_ancestor(fname)
 		or "."
 end
@@ -126,11 +126,11 @@ end
 M.toggle_header = function()
 	-- 获取当前文件类型
 	local filetype = vim.bo.filetype
-	if filetype ~= "cpp" then
+	if filetype ~= "cpp" and filetype ~= "c" then
 		return
 	end
 	local header_file_ext = { ".h" } -- 头文件扩展名
-	local source_file_ext = { ".cpp", ".c++", ".cc" } -- 源文件扩展名
+	local source_file_ext = { ".cpp", ".c++", ".cc", ".c" } -- 源文件扩展名
 	local cur_dir = vim.fn.expand("%:p:h")
 	local cur_file_name_no_ext = vim.fn.expand("%:t:r")
 	local cur_file_ext = vim.fn.expand("%:e")

@@ -94,8 +94,6 @@ require("tokyonight").setup({
 })
 
 if transparent then
-	vim.g.transparent_enabled = true
-
 	local trans
 	status_ok, trans = pcall(require, "transparent")
 	if not status_ok then
@@ -104,7 +102,6 @@ if transparent then
 	end
 
 	local trans_setup = {
-		enable = true, -- boolean: enable transparent
 		extra_groups = { -- table/string: additional groups that should be cleared
 			-- In particular, when you set it to 'all', that means all available groups
 
@@ -116,7 +113,6 @@ if transparent then
 			"BufferLineSeparator",
 			"BufferLineIndicatorSelected",
 		},
-		exclude = {}, -- table: groups you don't want to clear
 	}
 
 	trans.setup(trans_setup)

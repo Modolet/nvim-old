@@ -226,10 +226,10 @@ end
 -- 调试
 -- 打断点/删除断点
 -- map("n", "<F9>", "<cmd>lua require('dap').toggle_breakpoint();<CR>", opt)
-map("n", "<F9>", "<cmd>DapToggleBreakpoint<CR>", opt)
+map("n", "<F9>", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", opt)
 -- 清空断点
 -- map("n", "<S-F9>", "<cmd>lua require('dap').repl.clear();<CR>", opt)
-map("n", "<S-F9>", "<cmd>DapClearBreakpoints<CR>", opt)
+map("n", "<S-F9>", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", opt)
 -- 运行代码到断点处
 -- map("n", "<F5>", "<cmd>lua require('dap').continue();<CR>", opt)
 map("n", "<F5>", "<cmd>DapContinue<CR>", opt)
@@ -249,7 +249,7 @@ map("n", "<F12>", "<cmd>DapRunToCursor<CR>", opt)
 -- map("n", "<S-F11>", "<cmd>lua require('dap').step_out();<CR>", opt)
 map("n", "<S-F11>", "<cmd>DapStepOut<CR>", opt)
 -- 结束调试
---map("n", "<F8>", "<cmd>lua require('dap').terminal();<CR>", opt)
-map("n", "<F8>", "<cmd>DapTerminal<CR>", opt)
+map("n", "<F8>", '<cmd>lua require("dap").terminate();require("dapui").close();vim.notify("结束调试")<CR>', opt)
+-- map("n", "<F8>", "<cmd>DapTerminal<CR>", opt)
 
 return pluginKeys
