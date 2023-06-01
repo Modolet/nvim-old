@@ -84,34 +84,4 @@ if dap and dapui and vt then
 	end
 end
 
-mnd.setup_handlers({
-	function(source_name)
-		-- all sources with no handler get passed here
-
-		-- Keep original functionality of `automatic_setup = true`
-		require("mason-nvim-dap.automatic_setup")(source_name)
-	end,
-	-- python = function(source_name)
-	-- 	dap.adapters.python = {
-	-- 		type = "executable",
-	-- 		command = "/usr/bin/python3",
-	-- 		args = {
-	-- 			"-m",
-	-- 			"debugpy.adapter",
-	-- 		},
-	-- 	}
-
-	-- 	dap.configurations.python = {
-	-- 		{
-	-- 			type = "python",
-	-- 			request = "launch",
-	-- 			name = "Launch file",
-	-- 			program = "${file}", -- This configuration will launch the current file if used.
-	-- 			pythonPath = function()
-	-- 				return vim.fn.input("Path to python interpreter: ", vim.fn.exepath("python3"), "file")
-	-- 			end,
-	-- 		},
-	-- 	}
-	-- end,
-	-- cppdbg = require("dap.config.cpp").setup,
-})
+mnd.setup()

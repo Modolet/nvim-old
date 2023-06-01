@@ -1,3 +1,4 @@
+local M = {}
 local enable = true
 
 if not enable then
@@ -7,13 +8,8 @@ if not enable then
 end
 
 local common = require("lsp.common")
-local status, ccls = pcall(require, "ccls")
-if not status then
-	vim.notify("未找到 ccls")
-	return
-end
 
-local opts = {
+M.opts = {
 	capabilities = common.capabilities,
 	flags = common.flags,
 	on_attach = common.on_attach,
@@ -32,30 +28,30 @@ local opts = {
 	-- },
 }
 
-return {
-	on_setup = function()
-		ccls.setup({
-			lsp = {
-				lspconfig = opts,
-				-- codelens = {
-				-- 	enable = false,
-				-- 	envents = { "BufWritePost", "InsertLeave" },
-				-- },
-				--#region 和clang共存
-				-- disable_capabilities = {
-				-- 	completionProvider = true,
-				-- 	documentFormattingProvider = true,
-				-- 	documentRangeFormattingProvider = true,
-				-- 	documentHighlightProvider = true,
-				-- 	documentSymbolProvider = true,
-				-- 	workspaceSymbolProvider = true,
-				-- 	renameProvider = true,
-				-- 	hoverProvider = true,
-				-- 	codeActionProvider = true,
-				-- },
-				-- disable_diagnostics = true,
-				-- disable_signature = true,
-			},
-		})
-	end,
-}
+-- M.on_setup = function()
+-- 	ccls.setup({
+-- 		lsp = {
+-- 			lspconfig = opts,
+-- 			-- codelens = {
+-- 			-- 	enable = false,
+-- 			-- 	envents = { "BufWritePost", "InsertLeave" },
+-- 			-- },
+-- 			--#region 和clang共存
+-- 			-- disable_capabilities = {
+-- 			-- 	completionProvider = true,
+-- 			-- 	documentFormattingProvider = true,
+-- 			-- 	documentRangeFormattingProvider = true,
+-- 			-- 	documentHighlightProvider = true,
+-- 			-- 	documentSymbolProvider = true,
+-- 			-- 	workspaceSymbolProvider = true,
+-- 			-- 	renameProvider = true,
+-- 			-- 	hoverProvider = true,
+-- 			-- 	codeActionProvider = true,
+-- 			-- },
+-- 			-- disable_diagnostics = true,
+-- 			-- disable_signature = true,
+-- 		},
+-- 	})
+-- end
+
+return M

@@ -4,22 +4,24 @@ if not status then
 	return
 end
 
-local old_notify = notify.notify
+local bypassmsg = {
+	"method textDocument/codeAction is not supported by any of the servers registered for the current buffer",
+	"warning: multiple different client offset_encodings",
+}
 
 notify.setup({
 	background_colour = "#000000",
 })
 
-notify.notify = function(msg, ...)
-	if msg:match("warning: multiple different client offset_encodings") then
-		return
-	end
-	old_notify(msg, ...)
+if not Org_notify then
+	Org_notify = notify.notify
 end
 
--- vim.notify = function(msg, ...)
--- 	if msg:match("warning: multiple different client offset_encodings") then
--- 		return
--- 	end
--- 	notify(msg, ...)
--- end
+notify.notify = function(msg, ...)
+	for i = 1, #bypassmsg do
+		if msg:match(bypassmsg[i]) then
+			return
+		end
+	end
+	Org_notify(msg, ...)
+end

@@ -1,6 +1,6 @@
 -- local colorscheme = "catppuccin-macchiato"
 -- local colorscheme = "catppuccin-frappe"
-local colorscheme = "catppuccin-mocha"
+-- local colorscheme = "catppuccin-mocha"
 -- local colorscheme = "catppuccin-latte"
 -- local colorscheme = "catppuccin"
 
@@ -20,7 +20,7 @@ local colorscheme = "catppuccin-mocha"
 -- local colorscheme = "nord"
 -- local colorscheme = "nordfox"
 -- local colorscheme = "onedark"
--- local colorscheme = "nightfox"
+local colorscheme = "nightfox"
 
 -- local colorscheme = "oxocarbon"
 local transparent = true
@@ -29,6 +29,10 @@ local status, cat = pcall(require, "catppuccin")
 if not status then
 	print("未找到 catppuccin")
 end
+
+-- local nightfox = require("nightfox")
+-- nightfox.setup({ transparent = transparent })
+-- nightfox.load()
 
 -- 判断是否存在Neovide
 -- if vim.fn.exists("g:loaded_neovide") == 1 then
@@ -46,6 +50,14 @@ vim.g.neon_style = "Doom"
 vim.g.neon_italic_keyword = true
 vim.g.neon_italic_function = true
 vim.g.neon_transparent = transparent
+
+xpcall(function()
+	require("nightfox").setup({
+		transparent_background = transparent,
+	})
+end, function(err)
+	print(debug.traceback(err))
+end)
 
 cat.setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -94,7 +106,7 @@ require("tokyonight").setup({
 })
 
 if transparent then
-	local trans
+	local trans, status_ok
 	status_ok, trans = pcall(require, "transparent")
 	if not status_ok then
 		vim.notify("未找到 transparent")

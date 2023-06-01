@@ -1,5 +1,10 @@
 local status, mnd, mason_config, lsp_setup, mason
 local common = require("lsp.common")
+
+require("lspconfig").clangd.setup({})
+require("lspconfig").pyright.setup({})
+-- require("lspconfig").ccls.setup({})
+
 status, mason = pcall(require, "mason")
 if not status then
 	vim.notify("未找到 mason")
@@ -34,7 +39,7 @@ local opts = {
 	mappings = {},
 	server = {
 		sumneko_lua = require("lsp.config.lua").opts,
-		-- ccls = require("lsp.config.ccls").on_setup(),
+		ccls = require("lsp.config.ccls").opts,
 		clangd = require("lsp.config.clangd").opts,
 	},
 }

@@ -19,10 +19,10 @@ local fileInfo = tools.get_file_info(file)
 -- db.preview_file_width = fileInfo.max_line_len
 
 -- 获取Nerd图标 nerdfonts.com/cheat-sheet
--- db.preview_command = "chafa"
--- db.preview_file_path = home .. "/.config/nvim/static/badapple.gif"
--- db.preview_file_height = 30
--- db.preview_file_width = 80
+-- command = "chafa"
+-- file_path = home .. "/.config/nvim/static/badapple.gif"
+-- file_height = 30
+-- file_width = 80
 
 -- db.custom_header = {
 -- 	[[          ▀████▀▄▄              ▄█ ]],
@@ -39,6 +39,10 @@ local fileInfo = tools.get_file_info(file)
 local opts = {
 	-- theme = "doom",
 	preview = {
+		-- command = "chafa",
+		-- file_path = home .. "/.config/nvim/static/badapple.gif",
+		-- file_height = 30,
+		-- file_width = 80,
 		command = 'echo "\n\n\n" | cat && cat | lolcat -F 0.3',
 		file_path = file,
 		file_height = fileInfo.line_num + 2,

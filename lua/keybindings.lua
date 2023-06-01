@@ -8,8 +8,8 @@ local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
 -- ufo折叠插件
-vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+-- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+-- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 map("i", "jj", "<Esc>", opt)
 
 -- 给行尾添加分号并新开一行
@@ -249,7 +249,7 @@ map("n", "<F12>", "<cmd>DapRunToCursor<CR>", opt)
 -- map("n", "<S-F11>", "<cmd>lua require('dap').step_out();<CR>", opt)
 map("n", "<S-F11>", "<cmd>DapStepOut<CR>", opt)
 -- 结束调试
-map("n", "<F8>", '<cmd>lua require("dap").terminate();require("dapui").close();vim.notify("结束调试")<CR>', opt)
+map("n", "<F8>", '<cmd>lua require("dap").terminate();require("dapui").close();<CR>', opt)
 -- map("n", "<F8>", "<cmd>DapTerminal<CR>", opt)
 
 return pluginKeys

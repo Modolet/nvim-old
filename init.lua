@@ -55,6 +55,20 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = { "*.ixx", "*.mpp" },
+	callback = function()
+		vim.cmd("setlocal filetype=cpp")
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+	pattern = { "*.ixx", "*.mpp" },
+	callback = function()
+		vim.cmd("setlocal filetype=cpp")
+	end,
+})
+
 -- 复制高亮
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
@@ -67,7 +81,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- 读取插件配置
 for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/plugins", [[v:val =~ '\.lua$']])) do
-	require("plugins." .. file:gsub("%.lua$", ""))
+	xpcall(function()
+		require("plugins." .. file:gsub("%.lua$", ""))
+	end, function() end)
 end
 
 require("lsp.setup")

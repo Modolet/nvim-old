@@ -28,7 +28,7 @@ M.plugins = {
 	"jedrzejboczar/toggletasks.nvim",
 	"lukas-reineke/indent-blankline.nvim", -- 竖线插件
 	"akinsho/toggleterm.nvim", -- 终端插件
-	"nkakouros-original/numbers.nvim", -- 自动切换为绝对行号
+	-- "nkakouros-original/numbers.nvim", -- 自动切换为绝对行号
 	"aserowy/tmux.nvim", -- tmux
 	"lewis6991/impatient.nvim", -- 加速lua
 	"numToStr/Comment.nvim", -- 快速注释
@@ -86,6 +86,12 @@ M.plugins = {
 	{ "kevinhwang91/nvim-hlslens" }, -- 搜索高亮插件
 	"yamatsum/nvim-cursorline", -- 高亮当前选中词
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" }, -- 更现代化的折叠
+	{
+		"arnamak/stay-centered.nvim",
+		config = function()
+			require("stay-centered")
+		end,
+	},
 	-----------------------------------------Telescope----------------------------------
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }, tag = "0.1.0" }, -- 搜索
 	{ -- 提高telescope性能
@@ -97,8 +103,8 @@ M.plugins = {
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }, -- 语法高亮
 	{ "Badhi/nvim-treesitter-cpp-tools", dependencies = { "nvim-treesitter/nvim-treesitter" } }, -- C++ 生成定义
 	"nvim-telescope/telescope-ui-select.nvim", -- ui选择框
-	-- use "tom-anders/telescope-vim-bookmarks.nvim"
 	"nvim-telescope/telescope-dap.nvim",
+	-- use "tom-anders/telescope-vim-bookmarks.nvim"
 	-- use({ -- 高亮显示函数参数
 	-- 	"m-demare/hlargs.nvim",
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },

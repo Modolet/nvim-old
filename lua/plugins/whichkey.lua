@@ -106,6 +106,10 @@ local register = {
 		},
 		z = { ":Translate ZH<CR>", "翻译为中文" },
 		e = { ":Translate EN<CR>", "翻译为英文" },
+		a = {
+			[[<cmd>lua require('toggleterm.terminal').Terminal:new({ cmd = "ranger", hidden = true }):toggle()<cr>]],
+			"ranger",
+		},
 	},
 	s = {
 		name = "分屏、搜索",
