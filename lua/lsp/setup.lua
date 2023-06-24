@@ -1,8 +1,12 @@
 local status, mnd, mason_config, lsp_setup, mason
 local common = require("lsp.common")
+vim.cmd([[ autocmd BufRead,BufNewFile *.slint set filetype=slint ]])
 
 require("lspconfig").clangd.setup({})
 require("lspconfig").pyright.setup({})
+require("lspconfig").slint_lsp.setup({})
+-- require("lsp.config.rust")
+-- require("lspconfig").rust_analyzer.setup({})
 -- require("lspconfig").ccls.setup({})
 
 status, mason = pcall(require, "mason")
@@ -37,10 +41,14 @@ local opts = {
 	single_file_support = true,
 	default_mappings = false,
 	mappings = {},
-	server = {
+	servers = {
 		sumneko_lua = require("lsp.config.lua").opts,
 		ccls = require("lsp.config.ccls").opts,
 		clangd = require("lsp.config.clangd").opts,
+		rust_analyzer = {},
+		slint_lsp = {
+			-- root_dir = common.root_dir,
+		},
 	},
 }
 lsp_setup.setup(opts)

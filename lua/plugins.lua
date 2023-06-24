@@ -25,6 +25,12 @@ M.plugins = {
 	},
 	-- -- 看腻了就去这里找 https://github.com/topics/neovim-colorscheme
 	-----------------------------------------功能---------------------------------------
+	{
+		"norcalli/nvim-colorizer.lua", -- 高亮HTML格式颜色
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
 	"jedrzejboczar/toggletasks.nvim",
 	"lukas-reineke/indent-blankline.nvim", -- 竖线插件
 	"akinsho/toggleterm.nvim", -- 终端插件
@@ -137,6 +143,7 @@ M.plugins = {
 		end,
 	},
 	-----------------------------------------LSP----------------------------------------
+	"simrat39/rust-tools.nvim",
 	"jubnzv/virtual-types.nvim", -- 用虚拟文本显示变量类型
 	"rmagatti/goto-preview", -- 更好的预览
 	{ "williamboman/mason.nvim" }, -- LSP管理
