@@ -26,6 +26,14 @@ M.plugins = {
 	-- -- 看腻了就去这里找 https://github.com/topics/neovim-colorscheme
 	-----------------------------------------功能---------------------------------------
 	{
+		"iamcco/markdown-preview.nvim",
+		build = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
+	{
 		"norcalli/nvim-colorizer.lua", -- 高亮HTML格式颜色
 		config = function()
 			require("colorizer").setup()
